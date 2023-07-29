@@ -2,7 +2,7 @@ package com.rsm.service;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
-public interface AnswerConsumer {
+public interface ProducerService {
 
-    void consume(SendMessage sendMessage);
+    void produceAnswer(SendMessage sendMessage);
 }
