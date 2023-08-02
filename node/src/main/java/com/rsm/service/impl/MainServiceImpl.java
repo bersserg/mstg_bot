@@ -4,6 +4,7 @@ import com.rsm.entity.AppDocument;
 import com.rsm.entity.AppPhoto;
 import com.rsm.exceptions.UploadFileException;
 import com.rsm.service.FileService;
+import com.rsm.service.enums.LinkType;
 import com.rsm.service.enums.ServiceCommand;
 import lombok.extern.log4j.Log4j;
 import static com.rsm.entity.enums.UserState.BASIC_STATE;
@@ -74,9 +75,9 @@ public class MainServiceImpl implements MainService {
 
         try {
             AppDocument doc = fileService.processDoc(update.getMessage());
-            //TODO Добавить генерацию ссылки для скачивания документа
+            String link = fileService.generateLink(doc.getId(), LinkType.GET_DOC);
             var answer = "Документ успешно загружен! "
-                + "Ссылка для скачивания: http://test.ru/get-doc/777";
+                + "Ссылка для скачивания: " + link;
             sendAnswer(answer, chatId);
         } catch (UploadFileException ex) {
             log.error(ex);
@@ -96,9 +97,9 @@ public class MainServiceImpl implements MainService {
 
         try {
             AppPhoto photo = fileService.processPhoto(update.getMessage());
-            //TODO добавить генерацию ссылки для скачивания фото
+            String link = fileService.generateLink(photo.getId(), LinkType.GET_PHOTO);
             var answer = "Фото успешно загружено! "
-                + "Ссылка для скачивания: http://test.ru/get-photo/777";
+                + "Ссылка для скачивания: " + link;
             sendAnswer(answer, chatId);
         } catch (UploadFileException ex) {
             log.error(ex);
