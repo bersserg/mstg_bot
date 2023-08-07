@@ -1,14 +1,19 @@
 package com.rsm.controller;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
+import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
@@ -35,6 +40,12 @@ public class TelegramBot extends TelegramWebhookBot {
                 .url(botUri)
                 .build();
             this.setWebhook(setWebhook);
+            List<BotCommand> listOfCommands = new ArrayList<>();
+            listOfCommands.add(new BotCommand("/start", "get a welcome message"));
+            listOfCommands.add(new BotCommand("/registration", "user registration"));
+            listOfCommands.add(new BotCommand("/cancel", "cancel execution of the current command"));
+            listOfCommands.add(new BotCommand("/help", "info how to use this bot"));
+            this.execute(new SetMyCommands(listOfCommands, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e) {
             log.error(e);
         }
