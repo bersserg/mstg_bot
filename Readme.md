@@ -17,8 +17,8 @@ mstg_bot is a file sharing telegram bot on microservice architecture.
 - `password: p@ssw0rd`
 - `Postgres database name: mstg`
 
-### By default, microservices and DB are set to local uri (for running on a computer). 
-To use other credentials and addresses, you must also change the settings in the application.properties files.
+#### By default, microservices and DB are set to local uri (for running on a computer). 
+#### To use other credentials and addresses, you must also change the settings in the application.properties files.
 ---------------------------------------------------------------------------------------------------------------
 - Download and install [docker](https://www.docker.com)
 - Deploying RabbitMQ in the docker:
