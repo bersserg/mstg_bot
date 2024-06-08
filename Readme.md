@@ -112,4 +112,3 @@ ngrok http 8084
 - Before using it, you need to register, for which you need to select the /registration command in the menu, after which the bot will request an e-mail. It is necessary to send the e-mail address to the chat, after which the bot will send an e-mail with a link to the specified e-mail, when you click on it, a message about successful registration will appear, after which you can save files.
 - Send the file to chat, the bot will save it in the database and return you a link to it.
 ---------------------------------------------------------------------------------------------------------------
-I'm still just learning development and this is my learning project, the development of this bot is ongoing.
